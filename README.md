@@ -23,4 +23,3 @@ The primary focus is on understanding the fundamental concepts of Machine Learni
 ## 🛠️ Tech Stack
 * **Language:** Python
 * **Libraries:** Scikit-learn, PyTorch / TensorFlow, NumPy, Pandas
-* **Security Tools:** (e.g., Adversarial Robustness Toolbox (ART), CleverHans - *update as you use them*)
