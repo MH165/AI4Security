@@ -132,11 +132,11 @@ Rows of the confusion matrix are the true class, columns the predicted class.
 
 A common first step is to compute each feature's Pearson correlation with the target:
 
-![Correlation of each feature with the target](01_ML_Foundations/Supervised/images/correlation_with_target.png)
+![Correlation of each feature with the target](../images/correlation_with_target.png)
 
 The correlations are moderate (the strongest real features reach about |r| = 0.65), and `Number` shows exactly 1.00, which is a red flag (see Part II). It is tempting to read that as "the data is linear." The scatter plots say otherwise:
 
-![Top features vs target with regression lines](01_ML_Foundations/Supervised/images/top_features_scatter.png)
+![Top features vs target with regression lines](../images/top_features_scatter.png)
 
 Because the target is binary, the points sit in two horizontal bands (0 and 1). The red line is only a line drawn through those two groups, and it even leaves the [0, 1] range (below -4 for `IAT`, above 5 for `Rate`).
 
