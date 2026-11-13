@@ -41,7 +41,7 @@ The repo has two goals:
 
 With a 0/1 target, linear regression produces scores that are not probabilities: they can be negative or greater than 1, and they aren't calibrated. Logistic regression fixes this by passing the same kind of linear score through a function that always lands between 0 and 1.
 
-![Linear vs logistic regression on toy data](images/logreg_linear_vs_logistic_toy.png)
+![Linear vs logistic regression on toy data](01_ML_Foundations/Supervised/images/logreg_linear_vs_logistic_toy.png)
 
 *Toy data, not from the project: the red linear fit leaves [0, 1]; the green logistic curve stays inside it.*
 
@@ -55,7 +55,7 @@ Then convert it to a probability with the **sigmoid** (logistic) function:
 
 $$p = P(y=1 \mid \mathbf{x}) = \sigma(z) = \frac{1}{1 + e^{-z}}$$
 
-![Sigmoid function](images/logreg_sigmoid.png)
+![Sigmoid function](01_ML_Foundations/Supervised/images/logreg_sigmoid.png)
 
 Large positive scores give probabilities near 1, large negative scores near 0, and a score of 0 gives exactly 0.5.
 
@@ -76,7 +76,7 @@ There is no closed-form solution like the one linear regression has. Instead, th
 
 $$\mathcal{L} = -\frac{1}{n}\sum_{i=1}^{n}\Big[y_i \ln p_i + (1-y_i)\ln(1-p_i)\Big]$$
 
-![Log-loss curves](images/logreg_log_loss.png)
+![Log-loss curves](01_ML_Foundations/Supervised/images/logreg_log_loss.png)
 
 Being wrong with high confidence is punished heavily: predicting $p = 0.01$ for a sample that is actually an attack costs far more than predicting $p = 0.4$. The weights are found iteratively (scikit-learn's default solver is L-BFGS, a gradient-based method), which is why the model has a `max_iter` setting and can warn when it hasn't converged.
 
@@ -105,7 +105,7 @@ To stop the weights from growing without limit, scikit-learn applies **L2 regula
 
 If the classes can be split perfectly by a hyperplane, plain logistic regression never settles: making the weights bigger always lowers the loss a little more, so they head toward infinity. Regularization is what keeps them finite.
 
-![Weights growing with C on separable toy data](images/logreg_weights_vs_C.png)
+![Weights growing with C on separable toy data](01_ML_Foundations/Supervised/images/logreg_weights_vs_C.png)
 
 *Toy data, not from the project. On perfectly separable data the weight keeps growing as regularization weakens.*
 
@@ -206,14 +206,14 @@ flowchart LR
 2. **Duplicates.** 108 duplicate rows were removed from the training set, leaving 15,892 rows.
 3. **Leakage check.** `Number` has a correlation of 1.00 with the target:
 
-   ![Correlation of each feature with the target](images/logreg_correlation_with_target.png)
+   ![Correlation of each feature with the target](01_ML_Foundations/Supervised/images/logreg_correlation_with_target.png)
 
    It takes the value 100 in 7,944 rows and 10 in 7,933 rows, and only 15 rows have anything else. That pattern looks like a data-collection artifact, not real traffic behavior, so the column was dropped. This leaves 38 features.
 4. **Redundant columns.** `Tot size` has the same values as `AVG`, and `Variance` is the square of `Std`. Both were dropped, leaving **36 features**.
 
 ### A note on the plots
 
-![Top features vs target with regression lines](images/logreg_top_features_scatter.png)
+![Top features vs target with regression lines](01_ML_Foundations/Supervised/images/logreg_top_features_scatter.png)
 
 The target is binary, so each feature plot shows two horizontal bands, and the straight line is only a line drawn through them. The strongest features reach about |r| = 0.65 in the correlation chart, but the plots show the relationship is not linear in the probability. It is a step between two groups, which is exactly the shape a logistic (S-shaped) curve is built for.
 
